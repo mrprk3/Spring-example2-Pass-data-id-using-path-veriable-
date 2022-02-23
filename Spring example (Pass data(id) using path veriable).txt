@@ -1,0 +1,55 @@
+Spring example2
+
+How to pass data client to server using path variable
+
+EmployeeController.java
+
+package com.example.springrestapi.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+//import org.springframework.stereotype.Controller;
+//import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.bind.annotation.RequestMethod;
+//import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+//@Controller
+@RestController  // @Controller +  @ResponseBody
+public class EmployeeController {
+	
+	//@RequestMapping(value="/employees", method=RequestMethod.GET)
+	//@ResponseBody
+	@GetMapping("/employees")
+	public String getEmployees() {
+		return "employee details page";
+	}
+	
+	
+
+	// pass id using path variable (url)
+
+	@GetMapping("/employees/{id}")
+	public String getEmployee(@PathVariable("id") Long id) {
+		return "Fteching the employee details for the id "+id;
+	}
+
+}
+
+
+
+Springrestapi.java
+
+package com.example.springrestapi;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SpringrestapiApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringrestapiApplication.class, args);
+	}
+
+}
